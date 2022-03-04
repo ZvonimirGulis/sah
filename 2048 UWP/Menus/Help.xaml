@@ -11,7 +11,7 @@
         <RelativePanel>
             <TextBlock RelativePanel.AlignTopWithPanel="True" x:Name="h1" x:Uid="tip01"
                        RelativePanel.AlignHorizontalCenterWithPanel="True" Foreground="{ThemeResource txt}"
-                       FontSize="20" TextWrapping="Wrap" Margin="0,30" Text="滑动屏幕或使用键盘以移动所有方块"/>
+                       FontSize="20" TextWrapping="Wrap" Margin="0,30" Text="Ak ne znaš igrat 2048 fakat Bože pomozi"/>
 
             <Border Background="#BEAFA0" CornerRadius="5" Margin="0,40"
                     Height="235" Width="235" RelativePanel.Below="h1"
@@ -85,7 +85,7 @@
             </StackPanel>
         </RelativePanel>
         <RelativePanel>
-            <TextBlock Text="当两个数字相同的方块相遇时,就会合并为两数字之和！" x:Name="h3" x:Uid="tip03"
+            <TextBlock Text="Al pošto ne znas gle evo ti slikice" x:Name="h3" x:Uid="tip03"
                        RelativePanel.AlignTopWithPanel="True"  Foreground="{ThemeResource txt}"
                        RelativePanel.AlignHorizontalCenterWithPanel="True"
                        FontSize="20" TextWrapping="Wrap" Margin="20,30"/>
@@ -98,7 +98,7 @@
                 <TextBlock Text="=" FontSize="40" VerticalAlignment="Center"/>
                 <app:Tile Width="60" Height="60" Number="4"/>
             </StackPanel>
-            <TextBlock Text="当格子内填满数字，游戏就结束了" x:Uid="tip04" Foreground="{ThemeResource txt}"
+            <TextBlock Text="Evo i treća slikica" x:Uid="tip04" Foreground="{ThemeResource txt}"
                        RelativePanel.Below="h4" RelativePanel.AlignHorizontalCenterWithPanel="True"
                        FontSize="20" TextWrapping="Wrap" Margin="10"/>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center"                       
@@ -111,7 +111,7 @@
             </StackPanel>
         </RelativePanel>
         <RelativePanel>
-            <TextBlock Text="游戏目标是获得2048方块！" x:Uid="tip05" Foreground="{ThemeResource txt}"
+            <TextBlock Text="Sam dojdi do 2048 i topčina si" x:Uid="tip05" Foreground="{ThemeResource txt}"
                        RelativePanel.AlignTopWithPanel="True" x:Name="h5" 
                        RelativePanel.AlignHorizontalCenterWithPanel="True"
                        FontSize="20" TextWrapping="Wrap" Margin="0,30"/>

@@ -47,20 +47,11 @@ namespace _2048_UWP
                 //mylist1.Add(new MenuItem() { Icon = "Back", Title = str });
                 var str = loader.GetString("setting");
                 mylist1.Add(new MenuItem() { Icon = "Setting", Title = str });
-                str = loader.GetString("histroy");
-                mylist1.Add(new MenuItem() { Icon = "Favorite", Title = str });
                 str = loader.GetString("help");
                 mylist1.Add(new MenuItem() { Icon = "Help", Title = str });
                 list1.ItemsSource = mylist1;
 
-                mylist1 = new List<MenuItem>();
-                str = loader.GetString("about");
-                mylist1.Add(new MenuItem() { Icon = "Contact", Title = str });
-                str = loader.GetString("like");
-                mylist1.Add(new MenuItem() { Icon = "Like", Title = str });
-                //str = loader.GetString("back");
-                //mylist1.Add(new MenuItem() { Icon = "Back", Title = str });
-                list2.ItemsSource = mylist1;
+          
             }
             base.OnNavigatedTo(e);
             CoreWindow.GetForCurrentThread().PointerReleased += (sender, args) =>
@@ -98,9 +89,7 @@ namespace _2048_UWP
                 if (rootFrame.CanGoBack) rootFrame.GoBack();
             }
             if (item.Icon == "Setting") frame.Navigate(typeof(Setting));
-            if (item.Icon == "Favorite") frame.Navigate(typeof(Histroy));
             if (item.Icon == "Help") frame.Navigate(typeof(Help));
-            if (item.Icon == "Contact") frame.Navigate(typeof(About));
             if (item.Icon == "Like")
             {
                 try { await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store://review/?ProductId=9NBLGGH68BB0")); }

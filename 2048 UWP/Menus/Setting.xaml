@@ -8,8 +8,8 @@
     mc:Ignorable="d" Background="{ThemeResource accent}">
 
     <StackPanel Background="{ThemeResource bg}">
-        <TextBlock x:Uid="generalSetting" FontSize="35" Height="50" 
-                   Text="常规设置" Margin="5" x:Name="header" Foreground="{ThemeResource txt}"/>
+        <TextBlock x:Uid="Postavke" FontSize="35" Height="50" 
+                   Text="Postavke" Margin="5" x:Name="header" Foreground="{ThemeResource txt}"/>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -17,12 +17,12 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <TextBlock x:Uid="chooseAccentColor" FontSize="20" Text="强调色" 
+                <TextBlock x:Uid="Boja:" FontSize="20" Text="Boja:" 
                            Margin="5" x:Name="choosea" Foreground="{ThemeResource txt}"/>
                 <RadioButton GroupName="colora" Margin="5" Height="30" Click="RadioButton_Click" Name="theme" Foreground="{ThemeResource accent}">
                     <Grid>
                         <Rectangle Fill="{ThemeResource SystemAccentColor}" Width="100" Height="30" Stroke="{ThemeResource txt}"/>
-                        <TextBlock x:Uid="system" Text="跟随系统" Foreground="{ThemeResource txt}" FontWeight="Bold"/>
+                        <TextBlock x:Uid="system" Text="Od Sistema" Foreground="{ThemeResource txt}" FontWeight="Bold"/>
                     </Grid>
                 </RadioButton>
                 <RadioButton GroupName="colora" Margin="5" Height="30" Click="RadioButton_Click" Name="orange" Foreground="{ThemeResource accent}">
@@ -33,13 +33,13 @@
                 </RadioButton>
                 <RadioButton GroupName="colora" Margin="5"  Click="RadioButton_Click" Name="custom" IsChecked="True" Foreground="{ThemeResource accent}">
                     <Grid>
-                        <TextBlock x:Uid="custom" Text="自定义" Foreground="{ThemeResource txt}"/>
+                        <TextBlock x:Uid="custom" Text="custom" Foreground="{ThemeResource txt}"/>
                         <TextBox Width="100" x:Name="coloratxt" LostFocus="txt_LostFocus"/>
                     </Grid>
                 </RadioButton>
             </StackPanel>
             <StackPanel Grid.Column="1">
-                <TextBlock x:Uid="chooseBackground" FontSize="20" Text="背景色" 
+                <TextBlock x:Uid="Background::" FontSize="20" Text="Background:" 
                            Margin="5" x:Name="chooseb" Foreground="{ThemeResource txt}"/>
                 <RadioButton GroupName="colorb" Margin="5" Height="30" Click="RadioButton_Click" Name="light" Foreground="{ThemeResource accent}">
                     <Rectangle Fill="White" Width="100" Height="30" Stroke="{ThemeResource txt}"/>
@@ -49,7 +49,7 @@
                 </RadioButton>
                 <RadioButton GroupName="colorb" Margin="5" Click="RadioButton_Click" Name="custom2" IsChecked="True" Foreground="{ThemeResource accent}">
                     <Grid>
-                        <TextBlock x:Uid="custom"  Text="自定义" Foreground="{ThemeResource txt}"/>
+                        <TextBlock x:Uid="custom"  Text="custom" Foreground="{ThemeResource txt}"/>
                         <TextBox Width="100" x:Name="colorbtxt" LostFocus="txt_LostFocus"/>
                     </Grid>
                 </RadioButton>

@@ -42,7 +42,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE700;" FontFamily="Segoe MDL2 Assets" 
                                            FontSize="24" VerticalAlignment="Center" Foreground="{ThemeResource txt}"/>
-                                <TextBlock x:Uid="menu" Text="菜单" FontSize="24" Foreground="{ThemeResource txt}"
+                                <TextBlock x:Uid="menu" Text="Menu" FontSize="24" Foreground="{ThemeResource txt}"
                                            VerticalAlignment="Center" Margin="20,0,0,0"/>
                             </StackPanel>
                         </Button>
