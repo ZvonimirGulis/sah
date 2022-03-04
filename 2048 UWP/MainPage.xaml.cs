@@ -21,13 +21,11 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
-//“空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 上有介绍
+//“The Blank Page item template is described at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace _2048_UWP
 {
-    /// <summary>
-    /// 可用于自身或导航至 Frame 内部的空白页。
-    /// </summary>
+  
     public sealed partial class MainPage : Page
     {
         public const int LEFT = 0;
@@ -102,11 +100,11 @@ namespace _2048_UWP
                 Debug.WriteLine("Game Over");
                 ContentDialog dialog = new ContentDialog()
                 {
-                    Title = "游戏结束", //标题
-                    Content = "\n已无法合并更多数字\n您的得分为:" + score.Text + ",最高分为:" + best.Text + ".",//内容
-                    FullSizeDesired = false,  //是否全屏展示
-                    PrimaryButtonText = "新游戏",//第一个按钮内容
-                    SecondaryButtonText = "返回"
+                    Title = "Loš si",
+                    Content = "\nNema više mogučih podeza\nskill issue:" + score.Text + "High Score:" + best.Text + ".",
+                    FullSizeDesired = false,  
+                    PrimaryButtonText = "Novi Game",
+                    SecondaryButtonText = "Nazad prika"
                 };
                 btn.LostFocus -= Btn_LostFocus;
                 try
@@ -148,13 +146,13 @@ namespace _2048_UWP
             IfGameOver();
             Debug.WriteLine(direction);
 
-            // 初始化num中间数组为全零
+            // svi brojevi u polju se inicializiraju u nulu
             num = new int[4, 4];
             for (int i = 0; i < 4; i++)
                 for (int j = 0; j < 4; j++)
                     num[i, j] = 0;
 
-            //清除没有数字的格子
+            //miče čelije bez brojeva
             bool hasBlankMove = ClearBlank(direction);
             int i_score = int.Parse(score.Text);
             bool hasAddMove = AddNumber(direction, ref i_score);
@@ -163,7 +161,7 @@ namespace _2048_UWP
 
             if (hasAddMove | hasBlankMove)
             {
-                // 产生1个新的数字
+                // generira broj na random mjestu
                 Random random = new Random();
                 int a = random.Next(15);
                 if (a == 0)
@@ -172,12 +170,12 @@ namespace _2048_UWP
                     a = 2;
                 int x = 0, y = 0;
                 do
-                {   // 产生[0,3]随机数
+                {   
                     x = random.Next(4);
                     y = random.Next(4);
                 } while (tiles[x, y].Number != 0);
                 tiles[x, y].Number = a;
-                //新数字出现动画
+                //fancy animacija
                 tiles[x, y].Appera();
             }
 
@@ -187,7 +185,7 @@ namespace _2048_UWP
                 {
                     Debug.Write(tiles[i, j].Number + " ");
 
-                    //更新待保存数据
+                    
                     App.UserData.CurrentInstance.Num[i, j] = tiles[i, j].Number;
                 }
                 Debug.WriteLine("");
@@ -209,7 +207,7 @@ namespace _2048_UWP
                         if (0 != tiles[i, j].Number)
                             num[i, t++] = tiles[i, j].Number;
                 }
-            }//LEFT
+            }
 
             if (o == RIGHT)
             {
@@ -221,7 +219,7 @@ namespace _2048_UWP
                             num[i, t--] = tiles[i, j].Number;
 
                 }
-            }// RIGHT
+            }
 
             if (o == UP)
             {
@@ -232,7 +230,7 @@ namespace _2048_UWP
                         if (0 != tiles[i, j].Number)
                             num[t++, j] = tiles[i, j].Number;
                 }
-            }// UP
+            }
 
             if (o == DOWN)
             {
@@ -243,14 +241,14 @@ namespace _2048_UWP
                         if (0 != tiles[i, j].Number)
                             num[t--, j] = tiles[i, j].Number;
                 }
-            }//DOWN
+            }
 
-            // 更新numbers
+            // Ažuriranje brojeva
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < 4; j++)
                 {
-                    // 移除空白后与原来不相同,说明有移动
+                    // Nakon micanja praznine nije ista ko prije pa kod zna da je bilo pomaka
                     if (tiles[i, j].Number != num[i, j])
                         hasBlankMove = true;
                     tiles[i, j].Number = num[i, j];
@@ -273,7 +271,7 @@ namespace _2048_UWP
                         if (tiles[i, j].Number == tiles[i, j + 1].Number
                                 && tiles[i, j].Number != 0)
                         {
-                            //放大的动画
+                            //zoomed animacije
                             tiles[i, j].Zoom();
 
                             tiles[i, j].Number += tiles[i, j + 1].Number;
@@ -286,9 +284,9 @@ namespace _2048_UWP
                             tiles[i, 3].Number = 0;
                         }
                     }
-                }// 每行
+                }
 
-            }// LEFT
+            }
 
             if (o == RIGHT)
             {
@@ -300,7 +298,7 @@ namespace _2048_UWP
                         if (tiles[i, j].Number == tiles[i, j - 1].Number
                                 && tiles[i, j].Number != 0)
                         {
-                            //放大的动画
+                          
                             tiles[i, j].Zoom();
 
                             tiles[i, j].Number += tiles[i, j - 1].Number;
@@ -314,8 +312,7 @@ namespace _2048_UWP
                         }
                     }
                 }
-            }// RIGHT
-
+            }
             if (o == UP)
             {
                 Debug.WriteLine("↑");
@@ -326,7 +323,7 @@ namespace _2048_UWP
                         if (tiles[i, j].Number == tiles[i + 1, j].Number
                                 && tiles[i, j].Number != 0)
                         {
-                            //放大的动画
+                         
                             tiles[i, j].Zoom();
 
                             tiles[i, j].Number += tiles[i + 1, j].Number;
@@ -340,7 +337,7 @@ namespace _2048_UWP
                         }
                     }
                 }
-            }// UP
+            }
 
             if (o == DOWN)
             {
@@ -352,7 +349,7 @@ namespace _2048_UWP
                         if (tiles[i, j].Number == tiles[i - 1, j].Number
                                 && tiles[i, j].Number != 0)
                         {
-                            //放大的动画
+                            
                             tiles[i, j].Zoom();
 
                             tiles[i, j].Number += tiles[i - 1, j].Number;
@@ -366,44 +363,43 @@ namespace _2048_UWP
                         }
                     }
                 }
-            }//DOWN
+            }
 
             return hasAddMove;
         }
 
         private void MoveAnimate(Tile tile, int direction, int distance)
         {
-            //使用代码创建动画：
-            //https://msdn.microsoft.com/zh-cn/library/windows/apps/windows.ui.xaml.media.animation.storyboard.aspx
+          
 
-            // 创建平移动画
+            // animacije za pomicanje
             TranslateTransform moveTransform = new TranslateTransform();
-            //设置起始坐标
+            //0,0 kordinate tj pocetne kordinate
             moveTransform.X = 0;
             moveTransform.Y = 0;
-            //关联对象与动画
+            //asocijacija animacija i objekta
             tile.RenderTransform = moveTransform;
-            //设置动画时间
+            //animation time
             Duration duration = new Duration(TimeSpan.FromSeconds(1));
-            // 创建xy方向的动画
+            // animacije za x i y osu
             DoubleAnimation myDoubleAnimationX = new DoubleAnimation();
             DoubleAnimation myDoubleAnimationY = new DoubleAnimation();
-            //设置动画时间
+            //animation time
             myDoubleAnimationX.Duration = duration;
             myDoubleAnimationY.Duration = duration;
-            //创建故事板
+            //Kreacija storyboarda
             Storyboard moveStoryboard = new Storyboard();
             moveStoryboard.Duration = duration;
-            //把xy方向的动画添加到故事板
+            //x,y osa animacije storyboarda
             moveStoryboard.Children.Add(myDoubleAnimationX);
             moveStoryboard.Children.Add(myDoubleAnimationY);
-            //设置xy动画的目标是平移动画
+      
             Storyboard.SetTarget(myDoubleAnimationX, moveTransform);
             Storyboard.SetTarget(myDoubleAnimationY, moveTransform);
-            //设置动画要修改的属性是X、Y坐标
+            //The properties to be modified in setting animation are X, Y coordinates
             Storyboard.SetTargetProperty(myDoubleAnimationX, "X");
             Storyboard.SetTargetProperty(myDoubleAnimationY, "Y");
-            //设置结束坐标
+            //završni kontenjeri
             switch (direction)
             {
                 case LEFT: myDoubleAnimationX.To = -tile.ActualWidth * distance; break;
@@ -411,19 +407,18 @@ namespace _2048_UWP
                 case RIGHT: myDoubleAnimationX.To = tile.ActualWidth * distance; break;
                 case DOWN: myDoubleAnimationY.To = tile.ActualHeight * distance; break;
             }
-            //Canvas.ZIndex Attached Property
-            //https://msdn.microsoft.com/zh-cn/library/windows/apps/windows.ui.xaml.controls.canvas.zindex.aspx
+
             tile.SetValue(Canvas.ZIndexProperty, 999);
-            //开始动画
+            //startna animacija
             moveStoryboard.Begin();
         }
 
         private void NewGame(int times)
         {
-            //首次打开游戏
+            //ako prvi put upaljeno
             if (times == 0)
             {
-                //如果有上次游戏数据
+                //ako ima last game data
                 score.Text = App.UserData.CurrentInstance.Score;
                 best.Text = App.UserData.CurrentInstance.Best;
                 bool all0 = true;
@@ -435,17 +430,17 @@ namespace _2048_UWP
                     }
                 if (all0) Init();
             }
-            //点击新游戏
+            //new game
             else Init();
         }
 
         private void Init()
         {
-            //重置为零
+            //ide na 0
             foreach (Tile t in tiles)
                 t.Number = 0;
             Random random = new Random();
-            //其中一个为2，另一个为2(90%)或4(10%)
+            //stavljanje pocetnih brojeva prvi je uvijek 2, a drugi ima 90% šanse da je 2 i 10% šanse da je 4
             int a = 4;
             if (random.Next(0, 10) != 0) a = 2;
             int x1 = random.Next(0, 4),
@@ -485,10 +480,9 @@ namespace _2048_UWP
 
             if (Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().Orientation == Windows.UI.ViewManagement.ApplicationViewOrientation.Portrait)
             {
-                //竖屏
-                //竖向排列头部和主区域
+                //vertikala
+                //Mjenjanje svega da je vertikalno
                 wrap.Orientation = Orientation.Vertical;
-                //横向排列头部内容
                 header.Orientation = Orientation.Horizontal;
 
                 header.Height = size.Height * up;
@@ -512,7 +506,7 @@ namespace _2048_UWP
             }
             else
             {
-                //横屏
+                //horizontalna orijentacija
                 wrap.Orientation = Orientation.Horizontal;
                 header.Orientation = Orientation.Vertical;
 
@@ -541,16 +535,14 @@ namespace _2048_UWP
                 (headerRight.Height - headergrid.Height) / 2,
                 (headerRight.Width - headergrid.Width) / 2,
                 (headerRight.Height - headergrid.Height) / 2);
-            //if (tiles != null)
-               // foreach (Tile tile in tiles) { tile.SetCenterXY(b00.ActualWidth / 2, b00.ActualHeight / 2); }
+            
         }
 
         private void menugrid_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
             menutxt.Foreground = new SolidColorBrush(Colors.White);
 
-            //设置鼠标手型
-            //http://www.cnblogs.com/webabcd/archive/2013/01/10/2853974.html
+           
             Windows.UI.Core.CoreWindow.GetForCurrentThread().PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Hand, 1);
             menugrid.PointerExited += (o, e1) =>
             {
@@ -573,8 +565,7 @@ namespace _2048_UWP
 
         private void menugrid_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            //UWP 系统级页面导航
-            //http://www.cnblogs.com/Zixx/archive/2015/10/11/4868937.html
+            
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(Menu));
         }
@@ -584,7 +575,7 @@ namespace _2048_UWP
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            //使得键盘焦点总不消失
+            //nekad zna maknut fokus od tipkovnice kod i sam ne registrira inputs pa ovo bi trebalo to popravit
             btn.Focus(FocusState.Programmatic);
             btn.LostFocus += Btn_LostFocus;
         }
@@ -626,476 +617,3 @@ namespace _2048_UWP
 
 }
 
-/*
-     private void Move(int o)
-     {
-         // 初始化num中间数组为全零
-         num = new int[4, 4];
-         for (int i = 0; i < 4; i++)
-         {
-             for (int j = 0; j < 4; j++)
-             {
-                 num[i, j] = 0;
-             }
-         }
-
-         //清除没有数字的格子
-         bool hasBlankMove = ClearBlank(o);
-
-         /** 记录得分 *
-         int i_score = int.Parse(score.Text);
-
-         bool hasAddMove = AddNumber(o, ref i_score);
-
-         score.Text = i_score.ToString();
-         if (i_score > int.Parse(best.Text)) { best.Text = i_score.ToString(); }
-
-         /** 产生新的数字块 *
-         if (hasAddMove | hasBlankMove)
-         {
-             // 产生1个新的数字
-             Random random = new Random();
-             int a = random.Next(15);
-             if (a == 0)
-                 a = 4;
-             else
-                 a = 2;
-             int x = 0, y = 0;
-             do
-             {   // 产生[0,3]随机数
-                 x = random.Next(4);
-                 y = random.Next(4);
-             } while (tiles[x, y].Number != 0);
-             tiles[x, y].Number = a;
-             //新数字出现动画
-             tiles[x, y].Appera();
-         }
-
-         for (int i = 0; i < 4; i++)
-         {
-             for (int j = 0; j < 4; j++)
-             {
-                 Debug.Write(tiles[i, j].Number + " ");
-
-                 //更新待保存数据
-                 UserData.CurrentInstance.Num[i, j] = tiles[i, j].Number;
-
-             }
-             Debug.WriteLine("");
-         }
-         Debug.WriteLine("score = " + score.Text + " best = " + best.Text);
-         UserData.CurrentInstance.Score = score.Text;
-         UserData.CurrentInstance.Best = best.Text;
-     }
-     */
-#region
-/*
-private bool ClearBlank(int o)
-{
-    bool hasBlankMove = false;
-    if (o == LEFT)
-    {
-        for (int i = 0; i < 4; i++)
-        {
-            int t = 0;
-            for (int j = 0; j < 4; j++)
-            {
-                if (0 != tiles[i, j].Number)
-                {
-                    num[i, t++] = tiles[i, j].Number;
-                }
-            }
-        }
-    }//LEFT
-
-    if (o == RIGHT)
-    {
-        for (int i = 0; i < 4; i++)
-        {
-            int t = 3;
-            for (int j = 3; j >= 0; j--)
-            {
-                if (0 != tiles[i, j].Number)
-                {
-                    num[i, t--] = tiles[i, j].Number;
-                }
-            }
-        }
-    }// RIGHT
-
-    if (o == UP)
-    {
-        for (int j = 0; j < 4; j++)
-        {
-            int t = 0;
-            for (int i = 0; i < 4; i++)
-            {
-                if (0 != tiles[i, j].Number)
-                {
-                    num[t++, j] = tiles[i, j].Number;
-                }
-            }
-        }
-    }// UP
-
-    if (o == DOWN)
-    {
-        for (int j = 0; j < 4; j++)
-        {
-            int t = 3;
-            for (int i = 3; i >= 0; i--)
-            {
-                if (0 != tiles[i, j].Number)
-                {
-                    // hasmove = true;
-                    num[t--, j] = tiles[i, j].Number;
-                }
-            }
-        }
-    }//DOWN
-
-    // 更新numbers
-    for (int i = 0; i < 4; i++)
-    {
-        for (int j = 0; j < 4; j++)
-        {
-            // 移除空白后与原来不相同,说明有移动
-            if (tiles[i, j].Number != num[i, j])
-                hasBlankMove = true;
-            tiles[i, j].Number = num[i, j];
-        }
-    }
-
-    return hasBlankMove;
-}
-
-/// <summary>
-/// 合并数字并更新得分
-/// </summary>
-/// <param name="o">方向</param>
-/// <param name="s">得分</param>
-/// <returns></returns>
-private bool AddNumber(int o, ref int s)
-{
-
-    bool hasAddMove = false;
-    if (o == LEFT)
-    {
-        Debug.WriteLine("←");
-        for (int i = 0; i < 4; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                if (tiles[i, j].Number == tiles[i, j + 1].Number
-                        && tiles[i, j].Number != 0)
-                {
-                    //放大的动画
-                    tiles[i, j].Zoom();
-
-                    tiles[i, j].Number += tiles[i, j + 1].Number;
-                    s += tiles[i, j].Number;
-                    hasAddMove = true;
-                    for (int t = j + 1; t < 3; t++)
-                    {
-                        tiles[i, t].Number = tiles[i, t + 1].Number;
-                    }
-                    tiles[i, 3].Number = 0;
-                }
-            }
-        }// 每行
-
-    }// LEFT
-
-    if (o == RIGHT)
-    {
-        Debug.WriteLine("→");
-        for (int i = 0; i < 4; i++)
-        {
-            for (int j = 3; j > 0; j--)
-            {
-                if (tiles[i, j].Number == tiles[i, j - 1].Number
-                        && tiles[i, j].Number != 0)
-                {
-                    //放大的动画
-                    tiles[i, j].Zoom();
-
-                    tiles[i, j].Number += tiles[i, j - 1].Number;
-                    s += tiles[i, j].Number;
-                    hasAddMove = true;
-                    for (int t = j - 1; t > 0; t--)
-                    {
-                        tiles[i, t].Number = tiles[i, t - 1].Number;
-                    }
-                    tiles[i, 0].Number = 0;
-                }
-            }
-        }
-    }// RIGHT
-
-    if (o == UP)
-    {
-        Debug.WriteLine("↑");
-        for (int j = 0; j < 4; j++)
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                if (tiles[i, j].Number == tiles[i + 1, j].Number
-                        && tiles[i, j].Number != 0)
-                {
-                    //放大的动画
-                    tiles[i, j].Zoom();
-
-                    tiles[i, j].Number += tiles[i + 1, j].Number;
-                    hasAddMove = true;
-                    s += tiles[i, j].Number;
-                    for (int t = i + 1; t < 3; t++)
-                    {
-                        tiles[t, j].Number = tiles[t + 1, j].Number;
-                    }
-                    tiles[3, j].Number = 0;
-                }
-            }
-        }
-    }// UP
-
-    if (o == DOWN)
-    {
-        Debug.WriteLine("↓");
-        for (int j = 0; j < 4; j++)
-        {
-            for (int i = 3; i > 0; i--)
-            {
-                if (tiles[i, j].Number == tiles[i - 1, j].Number
-                        && tiles[i, j].Number != 0)
-                {
-                    //放大的动画
-                    tiles[i, j].Zoom();
-
-                    tiles[i, j].Number += tiles[i - 1, j].Number;
-                    hasAddMove = true;
-                    s += tiles[i, j].Number;
-                    for (int t = i - 1; t > 0; t--)
-                    {
-                        tiles[t, j].Number = tiles[t - 1, j].Number;
-                    }
-                    tiles[0, j].Number = 0;
-                }
-            }
-        }
-    }//DOWN
-
-    return hasAddMove;
-}
-
-private bool IsGameOver()
-{
-    for (int i = 0; i < 3; i++)
-    {
-        for (int j = 0; j < 3; j++)
-        {
-            if (tiles[i, j].Number == 0)
-            {
-                return false;// 还有空位置
-            }
-            else
-            {
-                if (tiles[i, j].Number == tiles[i, j + 1].Number
-                        || tiles[i, j].Number == tiles[i + 1, j].Number)
-                {
-                    return false;// 有相等的块
-                }
-            }
-        }
-        /**
-         * 外层大for循环只判断了3*3格，这里判断最外几个数字(下面x处)
-         * 
-         * <pre>
-         * · · · x
-         * · · · x
-         * · · · x
-         * x x x x
-         * </pre>
-         *
-        if (tiles[3, i].Number == tiles[3, i + 1].Number
-                || tiles[i, 3].Number == tiles[i + 1, 3].Number
-                || tiles[3, i].Number == 0 || tiles[i, 3].Number == 0)
-        {
-            return false;// 有相等的块或边上有空白块
-        }
-    }
-    return true; // 没有了空位置了,也没有相邻相等的数字
-}
-
-private async void IfGameOver()
-{
-    if (IsGameOver())
-    {
-
-        ContentDialog dialog = new ContentDialog()
-        {
-            Title = "游戏结束", //标题
-            Content = "\n已无法合并任何数字\n您的得分为:" + score.Text + ",最高分为:" + best.Text + ".",//内容
-            FullSizeDesired = false,  //是否全屏展示
-            PrimaryButtonText = "新游戏",//第一个按钮内容
-            SecondaryButtonText = "返回"
-        };
-        try
-        {
-            var result = await dialog.ShowAsync();
-            if (ContentDialogResult.Primary == result)
-            {
-                NewGame(times++);
-            }
-        }
-        catch (Exception ex) { Debug.WriteLine(ex.Message); }
-    }
-}
-
-private void NewGame_Click(object sender, RoutedEventArgs e)
-{
-    NewGame(times++);
-}
-
-private void Init()
-{
-    //重置为零
-    foreach (Tile t in tiles)
-    {
-        t.Number = 0;
-    }
-    Random random = new Random();
-    int a = 4;
-    if (random.Next(0, 10) != 0) a = 2;
-    int x1 = random.Next(0, 4),
-        y1 = random.Next(0, 4);
-    int x2, y2;
-    do
-    {
-        x2 = random.Next(0, 4);
-        y2 = random.Next(0, 4);
-    } while (x1 == x2 && y1 == y2);
-    //其中一个为2，另一个为2(90%)或4(10%)
-    tiles[x1, y1].Number = 2;
-    tiles[x2, y2].Number = a;
-    score.Text = "0";
-}
-
-private void NewGame(int nth)
-{
-    //刚打开游戏，需要读取上次游戏(如果有)
-    if (nth == 0)
-    {
-        score.Text = UserData.CurrentInstance.Score;
-        best.Text = UserData.CurrentInstance.Best;
-        for (int i = 0; i < 4; i++)
-        {
-            for (int j = 0; j < 4; j++)
-            {
-                tiles[i, j].Number = UserData.CurrentInstance.Num[i, j];
-            }
-        }
-        if (best.Text.Equals("0")) { Init(); }
-    }
-    else Init();
-}
-*/
-#endregion
-
-#region
-/*
-#region
-protected override void OnPointerPressed(PointerRoutedEventArgs e)
-{
-    base.OnPointerPressed(e);
-    PointerPoint point = e.GetCurrentPoint(null);
-    _startPoint = point;
-    _recognizer.ProcessDownEvent(point);
-    _recognizer1.ProcessDownEvent(point);
-    Debug.WriteLine("Pressed");
-}
-
-protected override void OnPointerMoved(PointerRoutedEventArgs e)
-{
-    base.OnPointerMoved(e);
-    _recognizer.ProcessMoveEvents(e.GetIntermediatePoints(null));
-    _recognizer1.ProcessMoveEvents(e.GetIntermediatePoints(null));
-}
-
-protected override void OnPointerReleased(PointerRoutedEventArgs e)
-{
-    base.OnPointerReleased(e);
-    PointerPoint point = e.GetCurrentPoint(null);
-    _endPoint = point;
-    _recognizer.ProcessUpEvent(point);
-    _recognizer1.ProcessUpEvent(point);
-}
-private void GestureRecognizer_CrossSliding1(GestureRecognizer sender, CrossSlidingEventArgs args)
-{
-    if (args.CrossSlidingState == CrossSlidingState.Completed
-        //&& (args.PointerDeviceType == PointerDeviceType.Pen || args.PointerDeviceType == PointerDeviceType.Touch)
-        )// 鼠标就不处理了。
-    {
-        if (_startPoint != null && _endPoint != null)// 确保访问 Position 不会异常。
-        {
-            double startX = _startPoint.Position.X;
-            double endX = _endPoint.Position.X;
-            if (startX < endX)
-            {
-                Debug.WriteLine("上");
-            }
-            else if (startX > endX)
-            {
-                Debug.WriteLine("下");
-            }
-        }
-    }
-}
-
-private void GestureRecognizer_CrossSliding(GestureRecognizer sender, CrossSlidingEventArgs args)
-{
-    if (args.CrossSlidingState == CrossSlidingState.Completed
-        && (args.PointerDeviceType == PointerDeviceType.Pen || args.PointerDeviceType == PointerDeviceType.Touch)
-        )// 鼠标就不处理了。
-    {
-        if (_startPoint != null && _endPoint != null)// 确保访问 Position 不会异常。
-        {
-            double startX = _startPoint.Position.X;
-            double endX = _endPoint.Position.X;
-            if (startX < endX)
-            {
-                Debug.WriteLine("右");
-            }
-            else if (startX > endX)
-            {
-                Debug.WriteLine("左");
-            }
-        }
-    }
-}
-#endregion
-*/
-#endregion
-
-/*        private readonly GestureRecognizer _recognizer;
-        private PointerPoint _startPoint;
-        private PointerPoint _endPoint;
-
-        private readonly GestureRecognizer _recognizer1;
-        _recognizer = new GestureRecognizer()
-        {
-            // 识别滑动手势。
-            GestureSettings = GestureSettings.CrossSlide,
-            // 识别水平滑动手势。
-            CrossSlideHorizontally = true
-        };
-        _recognizer.CrossSliding += GestureRecognizer_CrossSliding;
-
-        _recognizer1 = new GestureRecognizer()
-        {
-            // 识别滑动手势。
-            GestureSettings = GestureSettings.CrossSlide,
-            // 识别垂直滑动手势。
-            CrossSlideHorizontally = false
-        };
-        _recognizer1.CrossSliding += GestureRecognizer_CrossSliding1;
-        */
