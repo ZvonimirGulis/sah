@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -25,6 +26,16 @@ namespace sah
         public MainPage()
         {
             this.InitializeComponent();
+        }
+
+        private void Start_Click(object sender, RoutedEventArgs e)
+        {
+           Frame.Navigate(typeof(sah), null);
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            CoreApplication.Exit();
         }
     }
 }

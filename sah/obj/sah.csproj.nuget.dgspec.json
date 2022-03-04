@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Zvonimir Gulis\\source\\repos\\sah\\sah\\sah.csproj": {}
+    "C:\\Users\\Zvonimir Gulis\\Documents\\sah\\sah\\sah.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Zvonimir Gulis\\source\\repos\\sah\\sah\\sah.csproj": {
+    "C:\\Users\\Zvonimir Gulis\\Documents\\sah\\sah\\sah.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Zvonimir Gulis\\source\\repos\\sah\\sah\\sah.csproj",
+        "projectUniqueName": "C:\\Users\\Zvonimir Gulis\\Documents\\sah\\sah\\sah.csproj",
         "projectName": "sah",
-        "projectPath": "C:\\Users\\Zvonimir Gulis\\source\\repos\\sah\\sah\\sah.csproj",
+        "projectPath": "C:\\Users\\Zvonimir Gulis\\Documents\\sah\\sah\\sah.csproj",
         "packagesPath": "C:\\Users\\Zvonimir Gulis\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Zvonimir Gulis\\source\\repos\\sah\\sah\\obj\\",
+        "outputPath": "C:\\Users\\Zvonimir Gulis\\Documents\\sah\\sah\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
