@@ -168,20 +168,6 @@ namespace _2048_UWP
                         }
                     }
                 }//for
-
-              (Current.Resources["accent"] as SolidColorBrush).Color = Color.FromArgb(
-                    CurrentInstance.AccentAndBg[0, 0],
-                    CurrentInstance.AccentAndBg[0, 1],
-                    CurrentInstance.AccentAndBg[0, 2],
-                    CurrentInstance.AccentAndBg[0, 3]);
-                (Current.Resources["bg"] as SolidColorBrush).Color = Color.FromArgb(
-                    CurrentInstance.AccentAndBg[1, 0],
-                    CurrentInstance.AccentAndBg[1, 1],
-                    CurrentInstance.AccentAndBg[1, 2],
-                    CurrentInstance.AccentAndBg[1, 3]);
-
-             
-
                 byte txtr = 0, txtg = 0, txtb = 0;
                 if (rs.Values.TryGetValue("txtr", out v)) { txtr = (byte)v; }
                 if (rs.Values.TryGetValue("txtg", out v)) { txtg = (byte)v; }
@@ -196,14 +182,6 @@ namespace _2048_UWP
                 var rs = ApplicationData.Current.RoamingSettings;
                 rs.Values["score"] = CurrentInstance.Score;
                 rs.Values["best"] = CurrentInstance.best;
-                CurrentInstance.AccentAndBg[0, 0] = (Current.Resources["accent"] as SolidColorBrush).Color.A;
-                CurrentInstance.AccentAndBg[0, 1] = (Current.Resources["accent"] as SolidColorBrush).Color.R;
-                CurrentInstance.AccentAndBg[0, 2] = (Current.Resources["accent"] as SolidColorBrush).Color.G;
-                CurrentInstance.AccentAndBg[0, 3] = (Current.Resources["accent"] as SolidColorBrush).Color.B;
-                CurrentInstance.AccentAndBg[1, 0] = (Current.Resources["bg"] as SolidColorBrush).Color.A;
-                CurrentInstance.AccentAndBg[1, 1] = (Current.Resources["bg"] as SolidColorBrush).Color.R;
-                CurrentInstance.AccentAndBg[1, 2] = (Current.Resources["bg"] as SolidColorBrush).Color.G;
-                CurrentInstance.AccentAndBg[1, 3] = (Current.Resources["bg"] as SolidColorBrush).Color.B;
                 for (int i = 0; i < 4; i++)
                 {
                     for (int j = 0; j < 4; j++)

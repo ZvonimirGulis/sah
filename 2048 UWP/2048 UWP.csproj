@@ -98,7 +98,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="2048 UWP_StoreKey.pfx" />
     <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
@@ -117,7 +116,6 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="2048 UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Square310x310Logo.scale-100.png" />
