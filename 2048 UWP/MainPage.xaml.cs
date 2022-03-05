@@ -538,19 +538,7 @@ namespace _2048_UWP
             
         }
 
-        private void menugrid_PointerEntered(object sender, PointerRoutedEventArgs e)
-        {
-            menutxt.Foreground = new SolidColorBrush(Colors.White);
-
-           
-            Windows.UI.Core.CoreWindow.GetForCurrentThread().PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Hand, 1);
-            menugrid.PointerExited += (o, e1) =>
-            {
-                try { menutxt.Foreground = Application.Current.Resources["txt"] as SolidColorBrush; }
-                catch (Exception) { menutxt.Foreground = new SolidColorBrush(Colors.Black); }
-                CoreWindow.GetForCurrentThread().PointerCursor = new CoreCursor(CoreCursorType.Arrow, 1);
-            };
-        }
+        
         private void newgrid_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
             newtxt.Foreground = new SolidColorBrush(Colors.White);
@@ -563,13 +551,7 @@ namespace _2048_UWP
             };
         }
 
-        private void menugrid_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            
-            Frame rootFrame = Window.Current.Content as Frame;
-            rootFrame.Navigate(typeof(Menu));
-        }
-
+        
         private void newgrid_Tapped(object sender, TappedRoutedEventArgs e) { NewGame(nth++); }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

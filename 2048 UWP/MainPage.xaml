@@ -50,18 +50,10 @@
                         </StackPanel>
                     </Grid>
 
-                    <Grid  Margin="3" Grid.Row="1" Grid.Column="0" PointerEntered="menugrid_PointerEntered"
-                  Background="{ThemeResource accent}" x:Name="menugrid" Tapped="menugrid_Tapped">
-                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <TextBlock x:Uid="menu" x:Name="menutxt" Text="Menu"  Foreground="{ThemeResource txt}"
-                               VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        </StackPanel>
-                    </Grid>
-
                     <Grid Margin="3" Grid.Row="1" Grid.Column="1" PointerEntered="newgrid_PointerEntered"
                   Background="{ThemeResource accent}" Tapped="newgrid_Tapped" x:Name="newgrid">
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <TextBlock x:Uid="new" x:Name="newtxt" Text="New"  Foreground="{ThemeResource txt}"
+                            <TextBlock x:Uid="new" x:Name="newtxt" Text="Novo"  Foreground="{ThemeResource txt}"
                                VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         </StackPanel>
                     </Grid>

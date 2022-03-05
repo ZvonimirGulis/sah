@@ -25,14 +25,11 @@ using Windows.UI.Xaml.Navigation;
 namespace _2048_UWP
 {
     /// <summary>
-    /// 提供特定于应用程序的行为，以补充默认的应用程序类。
+    /// Provides application-specific behavior to complement the default application class.
     /// </summary>
     sealed partial class App : Application
     {
-        /// <summary>
-        /// 初始化单一实例应用程序对象。这是执行的创作代码的第一行，
-        /// 已执行，逻辑上等同于 main() 或 WinMain()。
-        /// </summary>
+ 
         public App()
         {
             Microsoft.ApplicationInsights.WindowsAppInitializer.InitializeAsync(
@@ -42,36 +39,22 @@ namespace _2048_UWP
             this.Suspending += OnSuspending;
         }
 
-        /// <summary>
-        /// 在应用程序由最终用户正常启动时进行调用。
-        /// 将在启动应用程序以打开特定文件等情况下使用。
-        /// </summary>
-        /// <param name="e">有关启动请求和过程的详细信息。</param>
+   
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-
-            //#if DEBUG
-            //            if (System.Diagnostics.Debugger.IsAttached)
-            //            {
-            //                this.DebugSettings.EnableFrameRateCounter = true;
-            //            }
-            //#endif
-
-            //http://blogs.u2u.be/diederik/post/2015/07/28/A-lap-around-Adaptive-Triggers.aspx
             // Override default minimum size.
             var view = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
             view.SetPreferredMinSize(new Size { Width = 320, Height = 480 });
 
             Frame rootFrame = Window.Current.Content as Frame;
 
-            // 不要在窗口已包含内容时重复应用程序初始化，
-            // 只需确保窗口处于活动状态
+            // Do not repeat application initialization when the window already contains content, repeat application initialization when the window is already contained,
+            // Just make sure the window is active
             if (rootFrame == null)
             {
-                // 创建要充当导航上下文的框架，并导航到第一页
+                //  Create a frame to act as a navigation context and navigate to the first page
                 rootFrame = new Frame();
-                //【Win10】页面导航的实现
-                //http://www.cnblogs.com/h82258652/p/4996087.html
+                //page navigation
                 rootFrame.Navigated += delegate
                 {
                     SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility
@@ -89,20 +72,20 @@ namespace _2048_UWP
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated || e.PreviousExecutionState == ApplicationExecutionState.ClosedByUser)
                 {
-                    //TODO: 从之前挂起的应用程序加载状态
+                    //Load state from previously suspended application
                     UserData.Load();
                 }
 
-                // 将框架放在当前窗口中
+                //  Put the frame in the current window
                 Window.Current.Content = rootFrame;
             }
 
             if (rootFrame.Content == null)
             {
-                // 当导航堆栈尚未还原时，导航到第一页，
-                // 并通过将所需信息作为导航参数传入来配置
-                // 参数
-                rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                //  When the navigation stack has not been restored, navigate to the first page,
+                // and configure it by passing in the required information as navigation parameters
+                // parameter
+                 rootFrame.Navigate(typeof(MainPage), e.Arguments);
             }
 
             if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
@@ -120,31 +103,31 @@ namespace _2048_UWP
                 };
             }
 
-            // 确保当前窗口处于活动状态
+            // Make sure the current window is active
             Window.Current.Activate();
         }
 
         /// <summary>
-        /// 导航到特定页失败时调用
+        ///Called when navigating to a specific page fails
         /// </summary>
-        ///<param name="sender">导航失败的框架</param>
-        ///<param name="e">有关导航失败的详细信息</param>
+        ///<param name="sender">Navigation failed frame</param>
+        ///<param name="e">Details about navigation failures</param>
         void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
 
         /// <summary>
-        /// 在将要挂起应用程序执行时调用。  在不知道应用程序
-        /// 无需知道应用程序会被终止还是会恢复，
-        /// 并让内存内容保持不变。
+        /// Called when application execution is about to be suspended. without knowing the application
+        ///No need to know if the application will be terminated or resumed,
+        /// and leave the memory contents unchanged.
         /// </summary>
-        /// <param name="sender">挂起的请求的源。</param>
-        /// <param name="e">有关挂起请求的详细信息。</param>
+        /// <param name="sender">The source of the pending request。</param>
+        /// <param name="e"></param>
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            //TODO: 保存应用程序状态并停止任何后台活动
+            //TODO: Save application state and stop any background activity
             UserData.Save();
             deferral.Complete();
         }
@@ -166,7 +149,7 @@ namespace _2048_UWP
 
             public static void Load()
             {
-                Debug.WriteLine("正加载数据...");
+                Debug.WriteLine("Loading data...");
                 var rs = ApplicationData.Current.RoamingSettings;
                 object v = null;
                 if (rs.Values.TryGetValue("score", out v)) { CurrentInstance.Score = (string)v; } else { CurrentInstance.Score = "0"; }
@@ -197,13 +180,7 @@ namespace _2048_UWP
                     CurrentInstance.AccentAndBg[1, 2],
                     CurrentInstance.AccentAndBg[1, 3]);
 
-                if (!rs.Values.TryGetValue("0a0", out v))
-                {
-                    //设置为系统主题色的方法
-                    //http://stackoverflow.com/questions/12647401/applicationpagebackgroundthemebrush-not-working
-                    (Current.Resources["accent"] as SolidColorBrush).Color = (Color)Current.Resources["SystemAccentColor"];
-                    (Current.Resources["accent"] as SolidColorBrush).Color = Colors.Gray;
-                }
+             
 
                 byte txtr = 0, txtg = 0, txtb = 0;
                 if (rs.Values.TryGetValue("txtr", out v)) { txtr = (byte)v; }
@@ -215,7 +192,7 @@ namespace _2048_UWP
 
             public static void Save()
             {
-                Debug.WriteLine("正保存数据");
+                Debug.WriteLine("Spremanje podataka");
                 var rs = ApplicationData.Current.RoamingSettings;
                 rs.Values["score"] = CurrentInstance.Score;
                 rs.Values["best"] = CurrentInstance.best;
@@ -237,13 +214,13 @@ namespace _2048_UWP
                             rs.Values[i + "a" + j] = CurrentInstance.AccentAndBg[i, j];
                         }
                     }
-                }//for
+                }
                 rs.Values["txtr"] = (Current.Resources["txt"] as SolidColorBrush).Color.R;
                 rs.Values["txtg"] = (Current.Resources["txt"] as SolidColorBrush).Color.G;
                 rs.Values["txtb"] = (Current.Resources["txt"] as SolidColorBrush).Color.B;
                 rs.Values["nth"] = CurrentInstance.Nth;
             }//save
-        }//class
+        }
     }
 
-}//namespace
+}
