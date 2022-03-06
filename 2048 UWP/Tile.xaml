@@ -23,8 +23,7 @@
         </Grid.Resources>
 
 
-        <!--参(chao)考(xi)如下网址-->
-        <!--https://github.com/levmixali4/2048WP/blob/master/2048WP/CustomControls/Tile.xaml-->
+        
         <Border x:Name="TileBorder" CornerRadius="5" Background="DarkBlue" Margin="5">
             <Border.RenderTransform>
                 <ScaleTransform x:Name="scl1" CenterX="50" CenterY="50"/>

@@ -21,7 +21,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
-//“The Blank Page item template is described at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+
 
 namespace _2048_UWP
 {
@@ -46,7 +46,7 @@ namespace _2048_UWP
         }
 
 
-        #region 判断移动方向
+        #region Smjer_gibanja
         private void _ManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e) { start = e.Position; }
         private void _ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
@@ -100,8 +100,8 @@ namespace _2048_UWP
                 Debug.WriteLine("Game Over");
                 ContentDialog dialog = new ContentDialog()
                 {
-                    Title = "Loš si",
-                    Content = "\nNema više mogučih podeza\nskill issue:" + score.Text + "High Score:" + best.Text + ".",
+                    Title = "Get good(Loš si)",
+                    Content = "\nNema više mogučih podeza\nskill issue:\n" + score.Text + "High Score:" + best.Text + ".",
                     FullSizeDesired = false,  
                     PrimaryButtonText = "Novi Game",
                     SecondaryButtonText = "Nazad prika"
